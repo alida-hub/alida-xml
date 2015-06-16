@@ -1,0 +1,177 @@
+<!-- An xsdconfig file must begin with a "config" element in the 
+        http://www.bea.com/2002/09/xbean/config namespace. Also, be sure
+        to declare any namespaces used to qualify types in your schema (here,
+        the namespace corresponding to the pol prefix. -->
+
+<!--
+  This file is part of Alida, a Java library for 
+  Automatic Logging of Process Information in Data Analysis.
+ 
+  Copyright (C) 2010 - @YEAR@
+ 
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+ 
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ 
+  Fore more information on Alida, visit
+ 
+     http://www.informatik.uni-halle.de/alida/
+-->
+
+<xs:schema 
+   targetNamespace="http://informatik.unihalle.de/Alida_xml"
+   xmlns="http://informatik.unihalle.de/Alida_xml"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   elementFormDefault="qualified"
+   attributeFormDefault="unqualified"
+>
+
+<!-- add annotation/comments -->
+
+<!-- Alida xml documents just hold an object of this (sub) class -->
+<xs:element name="ALDXML" type="ALDXMLObjectType">
+</xs:element>
+
+<!-- Types -->
+
+ <!-- base class to be extended by all Alida xml types:
+      holds the classname of the object -->
+ <xs:complexType name="ALDXMLObjectType">
+  <xs:sequence>
+   <xs:element name="className" type="xs:string"/>
+  </xs:sequence>
+ </xs:complexType>
+
+ <!-- wrap any type and just add the classname ,
+      used, e.g., for numerical values, strings -->
+ <xs:complexType name="ALDXMLAnyType">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLObjectType">
+        <xs:sequence>
+          <xs:element name="value" type="xs:anyType"/>
+        </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+ <!-- key-value pairs -->
+ <xs:complexType name="ALDXMLKeyValuePairType">
+   <xs:sequence>
+     <xs:element name="key" type="xs:string"/>
+     <xs:element name="value" type="ALDXMLObjectType"/>
+   </xs:sequence>
+ </xs:complexType>
+
+ <!-- generic enums -->
+ <xs:complexType name="ALDXMLEnumType">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLObjectType">
+        <xs:sequence>
+          <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+ <!-- 1D arrays and collections -->
+ <xs:complexType name="ALDXMLArrayType">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLObjectType">
+       <xs:sequence>
+         <xs:element name="elementClassName" type="xs:string"/>
+         <xs:element name="arrayValues" type="ALDXMLObjectType" minOccurs="0" maxOccurs="unbounded"/>
+       </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+<!-- parametrized classes and ALDOperators -->
+
+ <xs:complexType name="ALDXMLParametrizedType">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLObjectType">
+       <xs:sequence>
+         <xs:element name="pairs" type="ALDXMLKeyValuePairType" minOccurs="0" maxOccurs="unbounded"/>
+       </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+ <!-- ALDOperators without adding and removing of parameters-->
+ <xs:complexType name="ALDXMLOperatorType">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLParametrizedType">
+       <xs:sequence>
+         <xs:element name="opName" type="xs:string"/>
+       </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+ <!-- ALDOperators including adding and removing of parameters, i.e.
+      list of active parameters and potentially descriptors -->
+ <xs:complexType name="ALDXMLOperatorWithDescriptorType">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLOperatorType">
+       <xs:sequence>
+         <xs:element name="parameterNames" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="parameterDescriptors" type="ALDXMLKeyValuePairType" minOccurs="0" maxOccurs="unbounded"/>
+       </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+ <!-- hold a ALDWorkflow -->
+ <xs:complexType name="ALDXMLWorkflowType">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLObjectType">
+       <xs:sequence>
+         <xs:element name="resetDisconnectedInput" type="xs:boolean"/>
+
+         <!-- As a workflow extends ALDOperator this is the Operator part of each workflow -->
+         <xs:element name="operator" type="ALDXMLParametrizedType"/>
+
+         <xs:element name="nodes" type="ALDXMLWorkflowNodeType" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="edges" type="ALDXMLWorkflowEdgeType" minOccurs="0" maxOccurs="unbounded"/>
+       </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+ <!-- ALDWorkflowNode -->
+ <xs:complexType name="ALDXMLWorkflowNodeType">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLObjectType">
+       <xs:sequence>
+         <xs:element name="isInteriorShadowNode" type="xs:boolean"/>
+         <xs:element name="operator" type="ALDXMLParametrizedType"/>
+       </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+ <!-- ALDWorkflowEdge -->
+ <!-- Ids refer to the order of the nodes in the external xml representation -->
+ <xs:complexType name="ALDXMLWorkflowEdgeType">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLObjectType">
+       <xs:sequence>
+         <xs:element name="sourceNodeId" type="xs:int"/>
+         <xs:element name="sourceParameterName" type="xs:string"/>
+         <xs:element name="targetNodeId" type="xs:int"/>
+         <xs:element name="targetParameterName" type="xs:string"/>
+       </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+</xs:schema>
