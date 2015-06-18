@@ -1,6 +1,6 @@
 # alida-xml
 
-alida-xml is (a small) part for [**Alida**](www.informatik.uni-halle.de/alida)
+alida-xml is (a small) part for [**Alida**](ihttp://www.informatik.uni-halle.de/alida)
 (Advanced Library for Integrated Development of Data Analysis Applications)
 as is realizes xml-support for Alida.
 
