@@ -3,7 +3,7 @@
 
   <groupId>de.unihalle.informatik.Alida</groupId>
   <artifactId>alida-xml</artifactId>
-  <version>1.3</version>
+  <version>1.4-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>alida-xml</name>
@@ -177,18 +177,6 @@
       <layout>default</layout>
     </repository>
     <repository>
-      <id>snapshots</id>
-      <name>Archiva Snapshot Repository on 'moon'</name>
-      <url>https://moon.informatik.uni-halle.de/archiva/repository/snapshots/</url>
-      <layout>default</layout>
-    </repository>
-    <repository>
-      <id>internal</id>
-      <name>Archiva Internal Repository on 'moon'</name>
-      <url>https://moon.informatik.uni-halle.de/archiva/repository/internal/</url>
-      <layout>default</layout>
-    </repository>
-    <repository>
       <id>releases</id>
       <name>Archiva Release Repository on 'moon'</name>
       <url>https://moon.informatik.uni-halle.de/archiva/repository/releases/</url>
@@ -206,8 +194,8 @@
   </dependencies>
 
   <scm>
-    <connection>scm:git:https://trac.informatik.uni-halle.de/git/alidaGit</connection>
-    <developerConnection>scm:git:https://trac.informatik.uni-halle.de/git/alidaGit</developerConnection>
+    <connection>scm:git:https://github.com/alida-hub/alida-xml.git</connection>
+    <developerConnection>scm:git:https://github.com/alida-hub/alida-xml.git</developerConnection>
   </scm>
 
   <profiles>
