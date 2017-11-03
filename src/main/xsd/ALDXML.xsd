@@ -106,7 +106,12 @@
    </xs:complexContent>
  </xs:complexType>
 
- <!-- ALDOperators without adding and removing of parameters-->
+ <!-- ALDOperators without adding and removing of parameters
+   
+   it is a ALDXMLParametrizedType with the additional opName
+
+    this is version 1 of the xml representation of an operator
+-->
  <xs:complexType name="ALDXMLOperatorType">
    <xs:complexContent>
      <xs:extension base="ALDXMLParametrizedType">
@@ -118,12 +123,37 @@
  </xs:complexType>
 
  <!-- ALDOperators including adding and removing of parameters, i.e.
-      list of active parameters and potentially descriptors -->
+      list of active parameters and potentially descriptors 
+
+    in to addition of version 1 this hold the list of active parameters
+    and optionally descriptors for a subset of parameters
+
+    this is version 2 of the xml representation of an operator
+-->
  <xs:complexType name="ALDXMLOperatorWithDescriptorType">
    <xs:complexContent>
      <xs:extension base="ALDXMLOperatorType">
        <xs:sequence>
          <xs:element name="parameterNames" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="parameterDescriptors" type="ALDXMLKeyValuePairType" minOccurs="0" maxOccurs="unbounded"/>
+       </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+ </xs:complexType>
+
+ <!-- ALDOperators including adding and removing of parameters,
+      it hold 
+	- the list of all active and inactive parameters known at the time of writing
+	- for all known and not anotated parameters the descriptor
+
+    this is version 3 of the xml representation of an operator
+-->
+ <xs:complexType name="ALDXMLOperatorVersion3Type">
+   <xs:complexContent>
+     <xs:extension base="ALDXMLOperatorType">
+       <xs:sequence>
+         <xs:element name="activeParameterNames" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="inactiveParameterNames" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
          <xs:element name="parameterDescriptors" type="ALDXMLKeyValuePairType" minOccurs="0" maxOccurs="unbounded"/>
        </xs:sequence>
      </xs:extension>
