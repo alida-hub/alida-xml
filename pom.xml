@@ -14,7 +14,7 @@
   <parent>
     <groupId>de.unihalle.informatik.Alida</groupId>
     <artifactId>alida-pom</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
   </parent>
   
   <build>
