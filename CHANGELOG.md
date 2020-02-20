@@ -14,6 +14,10 @@ The format of the file is based on a template from [Keep a Changelog](http://kee
 
 ### Fixed
 
+## [1.8] - 2020-02-20
+Birgit Moeller - <birgit.moeller@informatik.uni-halle.de>
+- Released Alida XML 1.8
+
 ## [1.7] - 2019-07-25
 Birgit Moeller - <birgit.moeller@informatik.uni-halle.de>
 - Released Alida XML 1.7

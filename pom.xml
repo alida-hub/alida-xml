@@ -3,7 +3,7 @@
 
   <groupId>de.unihalle.informatik.Alida</groupId>
   <artifactId>alida-xml</artifactId>
-  <version>1.8-SNAPSHOT</version>
+  <version>1.8</version>
   <packaging>jar</packaging>
 
   <name>alida-xml</name>
@@ -14,7 +14,7 @@
   <parent>
     <groupId>de.unihalle.informatik.Alida</groupId>
     <artifactId>alida-pom</artifactId>
-    <version>1.4-SNAPSHOT</version>
+    <version>1.4</version>
   </parent>
   
   <build>
