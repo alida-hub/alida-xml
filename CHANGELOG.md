@@ -5,14 +5,14 @@ The format of the file is based on a template from [Keep a Changelog](http://kee
 
 ## [Unreleased]
 ### Added
-
 ### Changed
-
 ### Deprecated
-
 ### Removed
-
 ### Fixed
+
+## [2.1] - 2021-04-09
+Birgit Moeller - <birgit.moeller@informatik.uni-halle.de>
+- Released Alida XML 2.1
 
 ## [2.0] - 2020-05-15
 Birgit Moeller - <birgit.moeller@informatik.uni-halle.de>
@@ -37,13 +37,11 @@ Birgit Moeller - <birgit.moeller@informatik.uni-halle.de>
 ## [1.4] - 2017-11-10
 Birgit Moeller - <birgit.moeller@informatik.uni-halle.de>
 - Released Alida XML 1.4
-
 ### Added
 - Extended xsd schemata to include additional operator parameter and descriptor properties
 
 ## [1.3] - 2017-09-06
 Birgit Moeller - <birgit.moeller@informatik.uni-halle.de>
 - Released Alida XML 1.3
-
 ### Changed
 - Updated several Maven plugins
