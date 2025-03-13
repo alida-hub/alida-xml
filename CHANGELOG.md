@@ -10,6 +10,10 @@ The format of the file is based on a template from [Keep a Changelog](http://kee
 ### Removed
 ### Fixed
 
+## [2.3] - 2025-03-13
+Birgit Moeller - <birgit.moeller@informatik.uni-halle.de>
+- Released Alida XML 2.3
+
 ## [2.2] - 2023-07-31
 Birgit Moeller - <birgit.moeller@informatik.uni-halle.de>
 - Released Alida XML 2.2
